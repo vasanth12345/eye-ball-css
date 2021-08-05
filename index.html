@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+</head>
+<body>
+<style>
+*{
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
+}	
+body{
+	background:#fdb488;
+	height:100vh;
+	width:100%;
+	display:grid;
+	transform-style:preserve-3d;
+	place-items:center;
+}
+.box{
+	position:relative;
+}
+.eyeboxshadow,
+.eyebox,
+.era,
+.innerdot{
+	border-radius:50%;
+}
+.eyebox{
+	transform-style:preserve-3d;
+	transform:translateZ(50px);
+	width:120px;
+	height:120px;
+	position:relative;
+	background:#fff;
+	display:grid;
+	place-items:center;
+	animation: ani 1s linear infinite;
+}
+@keyframes ani {
+	50%{
+		height:115px;
+		width:125px;
+	}
+}
+.eyeboxshadow{
+	position:fixed;
+	bottom:35%;
+  left:50%;
+  transform:translate(-50%,35%);
+  background:rgba(97,97,97,0.6);
+  height:35px;
+	width:80px;
+	box-shadow:0 0 20px rgba(97,97,97,0.7);
+	filter:blur(3px);
+}
+
+.era{
+	transform:translateZ(60px);
+	width:45px;
+	height:45px;
+	position:absolute;
+	background:#00627a;
+	box-shadow:0 0 10px #006e89;
+}
+.innerdot{
+	transform:translateZ(70px);
+	position:absolute;
+	width:20px;
+	height:20px;
+	background:#1b1d1d;	
+}
+
+@media(max-width:420px){
+	body{
+		height:85vh;
+	}
+}
+</style>
+
+<div class="box">
+<div class="eyeboxshadow"></div>
+<div class="eyebox">
+	<div class="era"></div>
+	<div class="innerdot"></div>
+</div>
+</div>
+
+<script>
+const body = document.querySelector('body');
+const eye = document.querySelector('.eyebox');
+body.addEventListener('mousemove', (e)=> {
+let x = -(window.innerWidth / 2 - e.pageX) / 10;
+let y = (window.innerHeight / 2 - e.pageY) / 10;
+
+eye.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+
+});
+</script>
+</body>
+</html>
